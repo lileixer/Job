@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.Date;
+
 public class Job {
     private Integer id;
     private Integer bossid;
@@ -7,17 +9,13 @@ public class Job {
     private String title;
     private String content;
     private float salary;
-    private String starttime;
-    private String endtime;
+    private Date starttime;
+    private Date endtime;
     private Integer status;
 
-    public String getDepartment() {
-        return department;
-    }
+    public String getDepartment() { return department; }
 
-    public void setDepartment(String department) {
-        this.department = department;
-    }
+    public void setDepartment(String department) { this.department = department; }
 
     public Integer getId() {
         return id;
@@ -51,29 +49,19 @@ public class Job {
         this.content = content;
     }
 
-    public float getSalary() {
-        return salary;
-    }
+    public float getSalary() { return salary; }
 
     public void setSalary(float salary) {
         this.salary = salary;
     }
 
-    public String getStarttime() {
-        return starttime;
-    }
+    public Date getStarttime() { return starttime; }
 
-    public void setStarttime(String starttime) {
-        this.starttime = starttime;
-    }
+    public void setStarttime(Date starttime) { this.starttime = starttime; }
 
-    public String getEndtime() {
-        return endtime;
-    }
+    public Date getEndtime() { return endtime; }
 
-    public void setEndtime(String endtime) {
-        this.endtime = endtime;
-    }
+    public void setEndtime(Date endtime) { this.endtime = endtime; }
 
     public Integer getStatus() {
         return status;
@@ -92,8 +80,8 @@ public class Job {
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
                 ", salary=" + salary +
-                ", starttime='" + starttime + '\'' +
-                ", endtime='" + endtime + '\'' +
+                ", starttime=" + starttime +
+                ", endtime=" + endtime +
                 ", status=" + status +
                 '}';
     }

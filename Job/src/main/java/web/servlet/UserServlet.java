@@ -115,15 +115,15 @@ public class UserServlet extends BaseServlet {
     public void login(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException{
         String Check_Resut = new CodeUtils().check_msg(request,response,"check","CHECKCODE_SERVER");
         if(Check_Resut != null){
-            response.setContentType("application/json;charset=utf-8");
-            response.getWriter().write(Check_Resut);
+            response.setContentType("text/html;charset=utf-8");
+            response.getWriter().write("<script>alert('验证码错误!')</script>");
+            response.getWriter().write("<script>window.history.back(-2);</script>");
             return;
         }
 //        //清空数据
 //        request.getSession().invalidate();
         //获取数据
         Map<String, String[]> parameterMap = request.getParameterMap();
-        System.out.println(parameterMap.toString());
         //封装对象
         User user = new User();
         try {
@@ -133,26 +133,22 @@ public class UserServlet extends BaseServlet {
         }
 
         User u = userService.login(user);
-
-        ResultInfo info = new ResultInfo();
         //判断是否null
         if (u == null){
-            info.setFlag(false);
-            info.setErrorMsg("用户名或密码错误");
+            response.getWriter().write("<script>alert('用户名或密码错误')</script>");
+            response.getWriter().write("<script>window.history.back(-1);</script>");
         }else if (!"Y".equals(u.getStatus())){
-            info.setFlag(false);
-            info.setErrorMsg("您尚未激活，请激活");
+            response.getWriter().write("<script>alert('您尚未激活，请激活')</script>");
+            response.getWriter().write("<script>window.history.back(-1);</script>");
         }else if (u.getCheck() == null){
-            info.setFlag(false);
-            info.setErrorMsg("您尚未通过审核,请等待管理审核");
+            response.getWriter().write("<script>alert('您尚未通过审核,请等待管理审核!')</script>");
+            response.getWriter().write("<script>window.history.back(-1);</script>");
         }else{
             request.getSession().setAttribute("user",u);//登录成功标记
             request.getSession().setAttribute("identity","student");
-            info.setFlag(true);
-            info.setErrorMsg("登录成功");
+            response.getWriter().write("<script>alert('登录成功!')</script>");
+            response.getWriter().write("<script>window.history.back(-1);</script>");
         }
-        //响应数据
-        writeValue(info,response);
     }
     /**
      * 获取姓名

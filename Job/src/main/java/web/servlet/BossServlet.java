@@ -69,10 +69,12 @@ public class BossServlet extends BaseServlet {
     public void login(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException{
         String Check_Resut = new CodeUtils().check_msg(request,response,"check","CHECKCODE_SERVER");
         if(Check_Resut != null){
-            response.setContentType("application/json;charset=utf-8");
-            response.getWriter().write(Check_Resut);
+            response.setContentType("text/html;charset=utf-8");
+            response.getWriter().write("<script>alert('验证码错误!')</script>");
+            response.getWriter().write("<script>window.history.back(-2);</script>");
             return;
         }
+        response.setContentType("text/html;charset=utf-8;");
         //获取数据
         Map<String, String[]> parameterMap = request.getParameterMap();
         request.getSession().invalidate();
@@ -89,22 +91,20 @@ public class BossServlet extends BaseServlet {
         ResultInfo info = new ResultInfo();
         //判断是否null
         if (b == null){
-            info.setFlag(false);
-            info.setErrorMsg("用户名或密码错误");
+            response.getWriter().write("<script>alert('用户名或密码错误!')</script>");
+            response.getWriter().write("<script>window.history.back(-1);</script>");
         }
         //判断是否激活
         if (b != null && b.getCheck() == null){
-            info.setFlag(false);
-            info.setErrorMsg("管理员尚未审核，请等待审核!");
+            response.getWriter().write("<script>alert('管理员尚未审核，请等待审核!')</script>");
+            response.getWriter().write("<script>window.history.back(-1);</script>");
         }
         if (b != null && b.getCheck() != null){
             request.getSession().setAttribute("boss",b);//登录成功标记
             request.getSession().setAttribute("identity","boss");
-            info.setErrorMsg("登录成功");
-            info.setFlag(true);
+            response.getWriter().write("<script>alert('登陆成功')</script>");
+            response.getWriter().write("<script>window.history.back(-1);</script>");
         }
-        //响应数据
-        writeValue(info,response);
     }
     /**
      * 获取姓名

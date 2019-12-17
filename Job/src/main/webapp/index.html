@@ -117,36 +117,11 @@
 				</div>
 				<div class="form-group">
 					<div class="col-sm-offset-1 col-sm-8 text-center">
-						 <input type="submit" id="school_login" class="btn btn-success" value="校方">
-						 <input type="submit" id="student_login" class="btn btn-success" value="学生">
+						 <input type="submit" onclick="javascript:this.form.action='boss/login';" id="school_login" class="btn btn-success" value="校方">
+						 <input type="submit" onclick="javascript:this.form.action='user/login';" id="student_login" class="btn btn-success" value="学生">
 					</div>
 				</div>
 			</form>
-				<script>
-					$(function () {
-						//绑定单击事件
-						$("#student_login").click(function () {
-							//发送ajax请求，提交表单
-							$.post("user/login",$("#loginForm").serialize(),function (data) {
-								if (data.flag){
-									alert(data.errorMsg);
-								}else{
-									alert(data.errorMsg);
-								}
-							});
-						});
-						$("#school_login").click(function () {
-							//发送ajax请求，提交表单
-							$.post("boss/login",$("#loginForm").serialize(),function (data) {
-								if (data.flag){
-									alert(data.errorMsg);
-								}else{
-									alert(data.errorMsg);
-								}
-							});
-						});
-					});
-				</script>
 			</div>
 			<div class="col-md-8 column">
 				<div class="imgBox1">

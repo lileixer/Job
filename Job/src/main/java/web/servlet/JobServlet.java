@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.text.DateFormat;
 import java.util.Map;
 
 @WebServlet("/Job/*")
@@ -32,7 +33,8 @@ public class JobServlet extends BaseServlet {
         Boss boss = (Boss) request.getSession().getAttribute("boss");
         //获取表单所有数据
         Job job = new Job();
-        Map<String, String[]> map = request.getParameterMap();
+        Map<String,String[]> map = request.getParameterMap();
+
         try {
             BeanUtils.populate(job,map);
         } catch (IllegalAccessException e) {
