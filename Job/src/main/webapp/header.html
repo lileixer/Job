@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="">
+	<html>
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <!-- 引入 Bootstrap -->
+      <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+ 
+      <!-- HTML5 Shiv 和 Respond.js 用于让 IE8 支持 HTML5元素和媒体查询 -->
+      <!-- 注意： 如果通过 file://  引入 Respond.js 文件，则该文件无法起效果 -->
+      <!--[if lt IE 9]>
+         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+      <![endif]-->
+	   <script>
+		   $(function () {
+		   		var msg = null;
+			   //查询用户名
+			   $.get("user/findUserName",{ },function (data) {
+				   msg = "您好," + data.name;
+				   $("#person").html(msg);
+			   });
+			   //查询用户名
+			   if(msg == null) {
+				   $.get("boss/findUserName", {}, function (data) {
+					   var msg = "您好," + data.leader;
+					   $("#person").html(msg);
+				   });
+			   }
+		   });
+	   </script>
+	   <style>
+		   #head{
+			   width: 100%;
+			   height: 100px;
+			   background: url("img/22.jpg");
+		   }
+		   li{
+			  	color: #d9edf7;
+		   }
+	   </style>
+   </head>
+	<body>
+		<div class="contain">
+			<div class="row ">
+				<div class="col-md-18 column1">
+					<div id="head"></div>
+					<nav class="navbar navbar-default" role="navigation" >
+						<div class="navbar-header">
+							 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar">	
+							 </span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a style="color: #d9edf7" class="navbar-brand" href="index.html">首页</a>
+						</div>
+						
+						<div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1" style="background: #1B4A58">
+							<ul class="nav navbar-nav">
+								<li>
+									 <a style="color: #d9edf7" href="introduce.html">系统简介</a>
+								</li>
+								<li>
+									 <a style="color: #d9edf7" href="register.html">学生注册</a>
+								</li>
+								<li>
+									 <a style="color: #d9edf7" href="schoolRegister.html">校方注册</a>
+								</li>
+								<li>
+									 <a style="color: #d9edf7" href="#">招聘岗位</a>
+								</li>
+								<li>
+									 <a style="color: #d9edf7" href="message.html">在线留言</a>
+								</li>
+								<li>
+									 <a style="color: #d9edf7" href="manageLogin.html">后台管理</a>
+								</li>
+								<li><a>&nbsp;&nbsp;&nbsp;</a></li>
+			
+							</ul>
+							<form class="navbar-form navbar-left" role="search">
+								<div class="form-group">
+									<input type="text" placeholder="请输入兼职名称" class="form-control" />
+								</div> <button type="submit"  class="btn btn-default">搜索</button>
+							</form>
+							<ul class="nav navbar-nav navbar-right">
+								<li>
+									 <a style="color: #d9edf7" id="person" href="#">未登录</a>
+								</li>
+								<li class="dropdown">
+									 <a style="color: #d9edf7" href="javascript:location.href='PCenterServlet';"> 个人中心</a>
+								</li>
+								<li>
+									<a style="color: #d9edf7" href="javascript:location.href='user/exit';">退出</a>
+								</li>
+							</ul>
+						</div>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>在线留言</title>
+    <meta name="Generator" content="EditPlus®">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/message.css">
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery-3.3.1.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <!--导入布局js，共享header和footer-->
+    <script type="text/javascript" src="js/include.js"></script>
+    <script type="text/javascript" src="js/message.js"></script>
+</head>
+<body>
+    <div id="header"></div>
+    <div class="box">
+        <!--内容发布区域-->
+        <div class="boxcenter">
+            <div class="boxc_t"><h4>随便说点什么吧...</h4></div>
+            <textarea name="msg" id="msg" class="msg" style="width: 360px;height: 68px;margin-left: 20px"></textarea>
+            <div class="boxc_b"><a href="#">发布</a></div>
+        </div>
+        <!--时光轴线-->
+        <div class="timeline">
+            <div class="timeline_t">
+            </div>
+            <div class="nextbox"></div>
+        </div>
+
+    </div>
+</body>
+</html>
